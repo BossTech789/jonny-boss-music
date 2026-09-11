@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 
 <head>
 
@@ -8,6 +10,14 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon"
+          href="{{ asset('assets/favicon.png') }}?v=2"
+          type="image/png">
+
+    <link rel="shortcut icon"
+          href="{{ asset('assets/favicon.png') }}?v=2"
+          type="image/png">
+
     <meta name="description"
           content="Jonny Boss - Official Music Website">
 
@@ -15,403 +25,360 @@
           content="Jonny Boss">
 
     <title>
-        @yield('title', 'Jonny Boss Music')
+        @yield('title', 'Jonny Boss | Official Website')
     </title>
 
-    <!-- Favicon -->
-  <link rel="shortcut icon" href="public/assets/favicon.png">
+    @vite('resources/css/frontend.css')
 
-
-    {{-- Main Website CSS --}}
-    <link rel="stylesheet"
-          href="{{ asset('css/style.css') }}">
-
-
-    {{-- Page-specific CSS --}}
     @stack('styles')
 
 </head>
 
-
 <body>
 
+```
+{{-- =====================================================
+     HEADER
+====================================================== --}}
 
-    {{-- =====================================================
-         HEADER
-    ====================================================== --}}
+<header class="site-header">
 
-    <header class="site-header">
+    <div class="header-container">
 
-        <div class="header-container">
+        {{-- LOGO --}}
+
+        <a
+            href="{{ route('home') }}"
+            class="logo"
+            aria-label="Jonny Boss Home"
+        >
+            JB
+        </a>
 
 
-            {{-- LOGO --}}
+        {{-- MOBILE MENU BUTTON --}}
 
-            <a href="{{ route('home') }}"
-               class="logo"
-               aria-label="Jonny Boss Home">
+        <button
+            type="button"
+            class="hamburger"
+            id="hamburger"
+            aria-label="Toggle navigation menu"
+            aria-controls="mainNav"
+            aria-expanded="false"
+        >
 
-                JB
+            <span></span>
+            <span></span>
+            <span></span>
 
+        </button>
+
+
+        {{-- NAVIGATION --}}
+
+        <nav
+            class="main-nav"
+            id="mainNav"
+            aria-label="Main navigation"
+        >
+
+            <ul class="nav-list">
+
+                <li>
+                    <a href="{{ route('home') }}">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('music') }}">
+                        Music
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('video') }}">
+                        Videos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('home') }}#newsletter-section">
+                        Newsletter
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+{{-- =====================================================
+     MAIN CONTENT
+====================================================== --}}
+
+<main>
+
+    @yield('content')
+
+</main>
+
+
+{{-- =====================================================
+     FOOTER
+====================================================== --}}
+
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-social">
+
+            <a
+                href="https://www.facebook.com/realjonnyboss1"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Facebook
             </a>
 
 
-            {{-- MOBILE MENU BUTTON --}}
-
-            <button
-                class="hamburger"
-                id="hamburger"
-                type="button"
-                aria-label="Open navigation"
-                aria-controls="mainNav"
-                aria-expanded="false">
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </button>
+            <a
+                href="https://twitter.com/realjonnyboss"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                X
+            </a>
 
 
-            {{-- NAVIGATION --}}
-
-            <nav
-                class="main-nav"
-                id="mainNav"
-                aria-label="Main navigation">
-
-                <ul class="nav-list">
-
-                    <li>
-                        <a href="{{ route('home') }}">
-                            Home
-                        </a>
-                    </li>
+            <a
+                href="https://www.instagram.com/realjonnyboss/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Instagram
+            </a>
 
 
-                    <li>
-                        <a href="{{ route('music') }}">
-                            Music
-                        </a>
-                    </li>
+            <a
+                href="https://www.youtube.com/@realjonnyboss"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                YouTube
+            </a>
 
 
-                    <li>
-                        <a href="{{ route('video') }}">
-                            Videos
-                        </a>
-                    </li>
+            <a
+                href="https://open.spotify.com/artist/7qy2Fy69zpEJVrWqU2CrlF"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Spotify
+            </a>
 
 
-                    <li>
-                        <a href="{{ route('home') }}#contact-section">
-                            Newsletter
-                        </a>
-                    </li>
+            <a
+                href="https://music.apple.com/us/artist/jonny-boss/1625954922"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Apple Music
+            </a>
 
-                </ul>
 
-            </nav>
+            <a
+                href="https://music.amazon.com/artists/B0B27HG8QQ/jonny-boss"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Amazon Music
+            </a>
+
+
+            <a
+                href="https://audiomack.com/realjonnyboss"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Audiomack
+            </a>
+
+
+            <a
+                href="https://www.boomplay.com/share/artist/EQJHLx6xqKRECt7BB7ioTwcw"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Boomplay
+            </a>
+
+
+            <a
+                href="https://snapchat.com/add/realjonnyboss"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Snapchat
+            </a>
 
         </div>
 
-    </header>
 
+        <p class="copyright">
 
+            &copy; {{ date('Y') }} Jonny Boss Music.
+            All rights reserved.
 
-    {{-- =====================================================
-         MAIN CONTENT
-    ====================================================== --}}
+        </p>
 
-    <main>
+    </div>
 
-        @yield('content')
+</footer>
 
-    </main>
 
+{{-- =====================================================
+     MOBILE NAVIGATION
+====================================================== --}}
 
+<script>
 
-    {{-- =====================================================
-         FOOTER
-    ====================================================== --}}
+    document.addEventListener('DOMContentLoaded', function () {
 
-    <footer class="site-footer">
+        const hamburger =
+            document.getElementById('hamburger');
 
-        <div class="footer-content">
+        const mainNav =
+            document.getElementById('mainNav');
 
 
-            {{-- SOCIAL LINKS --}}
+        if (!hamburger || !mainNav) {
+            return;
+        }
 
-            <div class="footer-social">
 
+        /* ---------------------------------------------
+           OPEN / CLOSE MENU
+        --------------------------------------------- */
 
-                {{-- Facebook --}}
+        hamburger.addEventListener('click', function (event) {
 
-                <a
-                    href="https://www.facebook.com/realjonnyboss1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    title="Facebook">
+            event.stopPropagation();
 
-                    Facebook
+            const isOpen =
+                mainNav.classList.toggle('active');
 
-                </a>
+            hamburger.classList.toggle('active');
 
+            hamburger.setAttribute(
+                'aria-expanded',
+                isOpen ? 'true' : 'false'
+            );
 
-                {{-- Twitter / X --}}
+        });
 
-                <a
-                    href="https://twitter.com/realjonnyboss"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Twitter"
-                    title="Twitter">
 
-                    X
+        /* ---------------------------------------------
+           CLOSE MENU AFTER CLICKING A LINK
+        --------------------------------------------- */
 
-                </a>
+        const navLinks =
+            document.querySelectorAll('.nav-list a');
 
 
-                {{-- Instagram --}}
+        navLinks.forEach(function (link) {
 
-                <a
-                    href="https://www.instagram.com/realjonnyboss/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    title="Instagram">
+            link.addEventListener('click', function () {
 
-                    Instagram
+                mainNav.classList.remove('active');
 
-                </a>
+                hamburger.classList.remove('active');
 
-
-                {{-- YouTube --}}
-
-                <a
-                    href="https://www.youtube.com/@realjonnyboss"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="YouTube"
-                    title="YouTube">
-
-                    YouTube
-
-                </a>
-
-
-                {{-- Spotify --}}
-
-                <a
-                    href="https://open.spotify.com/artist/7qy2Fy69zpEJVrWqU2CrlF"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Spotify"
-                    title="Spotify">
-
-                    Spotify
-
-                </a>
-
-
-                {{-- Apple Music --}}
-
-                <a
-                    href="https://music.apple.com/us/artist/jonny-boss/1625954922"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Apple Music"
-                    title="Apple Music">
-
-                    Apple Music
-
-                </a>
-
-
-                {{-- Amazon Music --}}
-
-                <a
-                    href="https://music.amazon.com/artists/B0B27HG8QQ/jonny-boss?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_DbZ2B0ddEewStnjOXOyTJrEbR"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Amazon Music"
-                    title="Amazon Music">
-
-                    Amazon Music
-
-                </a>
-
-
-                {{-- Audiomack --}}
-
-                <a
-                    href="https://audiomack.com/realjonnyboss"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Audiomack"
-                    title="Audiomack">
-
-                    Audiomack
-
-                </a>
-
-
-                {{-- Boomplay --}}
-
-                <a
-                    href="https://www.boomplay.com/share/artist/EQJHLx6xqKRECt7BB7ioTwcw"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Boomplay"
-                    title="Boomplay">
-
-                    Boomplay
-
-                </a>
-
-
-                {{-- Snapchat --}}
-
-                <a
-                    href="https://snapchat.com/add/realjonnyboss"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Snapchat"
-                    title="Snapchat">
-
-                    Snapchat
-
-                </a>
-
-            </div>
-
-
-            {{-- COPYRIGHT --}}
-
-            <p class="copyright">
-
-                &copy; {{ date('Y') }} Jonny Boss Music.
-
-                All rights reserved.
-
-            </p>
-
-        </div>
-
-    </footer>
-
-
-
-    {{-- =====================================================
-         JAVASCRIPT
-    ====================================================== --}}
-
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-
-            const hamburger = document.getElementById('hamburger');
-            const mainNav = document.getElementById('mainNav');
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | MOBILE NAVIGATION
-            |--------------------------------------------------------------------------
-            */
-
-            if (hamburger && mainNav) {
-
-                hamburger.addEventListener('click', function () {
-
-                    const isOpen =
-                        mainNav.classList.toggle('active');
-
-                    hamburger.classList.toggle('active');
-
-                    hamburger.setAttribute(
-                        'aria-expanded',
-                        isOpen ? 'true' : 'false'
-                    );
-
-                });
-
-
-                /*
-                |--------------------------------------------------------------------------
-                | CLOSE MENU WHEN LINK IS CLICKED
-                |--------------------------------------------------------------------------
-                */
-
-                document
-                    .querySelectorAll('.nav-list a')
-                    .forEach(function (link) {
-
-                        link.addEventListener('click', function () {
-
-                            mainNav.classList.remove('active');
-
-                            hamburger.classList.remove('active');
-
-                            hamburger.setAttribute(
-                                'aria-expanded',
-                                'false'
-                            );
-
-                        });
-
-                    });
-
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
-            |--------------------------------------------------------------------------
-            */
-
-            document.addEventListener('click', function (event) {
-
-                if (!hamburger || !mainNav) {
-                    return;
-                }
-
-                const clickedInsideNav =
-                    mainNav.contains(event.target);
-
-                const clickedHamburger =
-                    hamburger.contains(event.target);
-
-
-                if (
-                    mainNav.classList.contains('active') &&
-                    !clickedInsideNav &&
-                    !clickedHamburger
-                ) {
-
-                    mainNav.classList.remove('active');
-
-                    hamburger.classList.remove('active');
-
-                    hamburger.setAttribute(
-                        'aria-expanded',
-                        'false'
-                    );
-
-                }
+                hamburger.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
 
             });
 
         });
 
-    </script>
+
+        /* ---------------------------------------------
+           CLOSE MENU WHEN CLICKING OUTSIDE
+        --------------------------------------------- */
+
+        document.addEventListener('click', function (event) {
+
+            if (!mainNav.classList.contains('active')) {
+                return;
+            }
 
 
-    {{-- Page-specific JavaScript --}}
-    @stack('scripts')
+            const clickedInsideNav =
+                mainNav.contains(event.target);
 
+            const clickedHamburger =
+                hamburger.contains(event.target);
+
+
+            if (
+                !clickedInsideNav &&
+                !clickedHamburger
+            ) {
+
+                mainNav.classList.remove('active');
+
+                hamburger.classList.remove('active');
+
+                hamburger.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+
+            }
+
+        });
+
+
+        /* ---------------------------------------------
+           CLOSE MENU WITH ESCAPE KEY
+        --------------------------------------------- */
+
+        document.addEventListener('keydown', function (event) {
+
+            if (
+                event.key === 'Escape' &&
+                mainNav.classList.contains('active')
+            ) {
+
+                mainNav.classList.remove('active');
+
+                hamburger.classList.remove('active');
+
+                hamburger.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+
+                hamburger.focus();
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
+@stack('scripts')
+```
 
 </body>
 

@@ -4,9 +4,9 @@
 
 @section('content')
 
-{{-- =========================
-HERO SECTION
-========================= --}}
+{{-- =====================================================
+HERO
+===================================================== --}}
 
 <section class="hero">
 
@@ -29,13 +29,11 @@ HERO SECTION
 
     <div class="hero-buttons">
 
-        <a href="{{ route('music') }}"
-           class="btn btn-primary">
+        <a href="{{ route('music') }}" class="btn btn-primary">
             Explore Music
         </a>
 
-        <a href="{{ route('video') }}"
-           class="btn btn-outline">
+        <a href="{{ route('video') }}" class="btn btn-outline">
             Watch Videos
         </a>
 
@@ -46,32 +44,31 @@ HERO SECTION
 
 </section>
 
-{{-- =========================
-MUSIC SECTION
-========================= --}}
+{{-- =====================================================
+MUSIC
+===================================================== --}}
 
-<section class="home-section music-section">
+<section class="music-section home-section">
 
 ```
 <div class="section-heading">
 
     <p class="section-label">
-        LATEST RELEASES
+        MUSIC
     </p>
 
     <h2>
-        Music
+        Latest Music
     </h2>
 
     <p>
-        Listen to the latest releases from Jonny Boss.
+        Discover the latest music from Jonny Boss.
     </p>
 
 </div>
 
 
-{{-- MUSIC CARDS --}}
-<div class="home-grid music-grid">
+<div class="music-grid">
 
     @forelse($music as $song)
 
@@ -84,6 +81,7 @@ MUSIC SECTION
                     <img
                         src="{{ asset('storage/' . $song->image) }}"
                         alt="{{ $song->title }}"
+                        loading="lazy"
                     >
 
                 @else
@@ -91,6 +89,7 @@ MUSIC SECTION
                     <img
                         src="{{ asset('images/default-music.jpg') }}"
                         alt="{{ $song->title }}"
+                        loading="lazy"
                     >
 
                 @endif
@@ -100,44 +99,104 @@ MUSIC SECTION
 
             <div class="music-card-content">
 
-                <p class="card-type">
-                    {{ $song->type }}
-                </p>
+                @if($song->type)
+
+                    <p class="card-type">
+                        {{ $song->type }}
+                    </p>
+
+                @endif
+
 
                 <h3>
                     {{ $song->title }}
                 </h3>
 
-                <p class="artist">
-                    {{ $song->artist }}
-                </p>
+
+                @if($song->artist)
+
+                    <p class="artist">
+                        {{ $song->artist }}
+                    </p>
+
+                @endif
 
 
                 <div class="music-links">
 
                     @if($song->spotify_link)
 
-                        <a href="{{ $song->spotify_link }}"
-                           target="_blank">
+                        <a
+                            href="{{ $song->spotify_link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Spotify
                         </a>
 
                     @endif
 
+
                     @if($song->apple_link)
 
-                        <a href="{{ $song->apple_link }}"
-                           target="_blank">
+                        <a
+                            href="{{ $song->apple_link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
                             Apple Music
                         </a>
 
                     @endif
 
+
                     @if($song->audiomack_link)
 
-                        <a href="{{ $song->apple_link }}"
-                           target="_blank">
-                            AudioMack
+                        <a
+                            href="{{ $song->audiomack_link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Audiomack
+                        </a>
+
+                    @endif
+
+
+                    @if($song->amazon_link)
+
+                        <a
+                            href="{{ $song->amazon_link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Amazon
+                        </a>
+
+                    @endif
+
+
+                    @if($song->youtudemusic_link)
+
+                        <a
+                            href="{{ $song->youtudemusic_link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            YouTube Music
+                        </a>
+
+                    @endif
+
+
+                    @if($song->boomplay_link)
+
+                        <a
+                            href="{{ $song->boomplay_link }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Boomplay
                         </a>
 
                     @endif
@@ -153,7 +212,7 @@ MUSIC SECTION
         <div class="empty-content">
 
             <p>
-                No music available yet.
+                No music has been released yet.
             </p>
 
         </div>
@@ -163,14 +222,13 @@ MUSIC SECTION
 </div>
 
 
-{{-- VIEW ALL MUSIC --}}
 <div class="section-button">
 
-    <a href="{{ route('music') }}"
-       class="btn btn-primary">
-
+    <a
+        href="{{ route('music') }}"
+        class="btn btn-outline"
+    >
         View All Music
-
     </a>
 
 </div>
@@ -178,115 +236,116 @@ MUSIC SECTION
 
 </section>
 
-{{-- =========================
-VIDEO SECTION
-========================= --}}
+{{-- =====================================================
+VIDEOS
+===================================================== --}}
 
-<section class="home-section video-section">
+<section class="video-section home-section">
 
 ```
 <div class="section-heading">
 
     <p class="section-label">
-        WATCH
+        VIDEOS
     </p>
 
     <h2>
-        Videos
+        Latest Videos
     </h2>
 
     <p>
-        Watch official music videos and visual content.
+        Watch the latest videos from Jonny Boss.
     </p>
 
 </div>
 
 
-{{-- VIDEO CARDS --}}
-<div class="home-grid video-grid">
+<div class="video-grid">
 
     @forelse($videos as $video)
 
-    <article class="video-card">
+        <article class="video-card">
 
-        <div class="video-image">
+            <div class="video-image">
 
-            {{-- Use the related music cover image --}}
-            @if($video->music && $video->music->image)
+                @if($video->music && $video->music->image)
 
-                <img
-                    src="{{ asset('storage/' . $video->music->image) }}"
-                    alt="{{ $video->title }}"
-                >
+                    <img
+                        src="{{ asset('storage/' . $video->music->image) }}"
+                        alt="{{ $video->title }}"
+                        loading="lazy"
+                    >
 
-            @else
+                @else
 
-                <div class="video-placeholder">
-                    VIDEO
-                </div>
+                    <img
+                        src="{{ asset('images/default-image.png') }}"
+                        alt="{{ $video->title }}"
+                        loading="lazy"
+                    >
 
-            @endif
+                @endif
 
-
-            {{-- Play button --}}
-            @if($video->youtube_id)
 
                 <a
                     href="https://www.youtube.com/watch?v={{ $video->youtube_id }}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="play-button"
-                    aria-label="Watch {{ $video->title }}"
+                    class="video-play"
+                    aria-label="Watch {{ $video->title }} on YouTube"
                 >
                     ▶
                 </a>
 
-            @endif
-
-        </div>
+            </div>
 
 
-        <div class="video-card-content">
+            <div class="video-card-content">
 
-            <p class="card-type">
-                Music Video
+                <p class="card-type">
+                    Music Video
+                </p>
+
+
+                <h3>
+                    {{ $video->title }}
+                </h3>
+
+
+                @if($video->music && $video->music->artist)
+
+                    <p class="artist">
+                        {{ $video->music->artist }}
+                    </p>
+
+                @endif
+
+            </div>
+
+        </article>
+
+    @empty
+
+        <div class="empty-content">
+
+            <p>
+                No videos available yet.
             </p>
 
-            <h3>
-                {{ $video->title }}
-            </h3>
-
-
-
-
         </div>
 
-    </article>
-
-@empty
-
-    <div class="empty-content">
-
-        <p>
-            No videos available yet.
-        </p>
-
-    </div>
-
-@endforelse
-
+    @endforelse
 
 </div>
 
 
-{{-- VIEW ALL VIDEOS --}}
 <div class="section-button">
 
-    <a href="{{ route('video') }}"
-       class="btn btn-primary">
-
+    <a
+        href="{{ route('video') }}"
+        class="btn btn-outline"
+    >
         View All Videos
-
     </a>
 
 </div>
@@ -294,61 +353,125 @@ VIDEO SECTION
 
 </section>
 
-{{-- =========================
-NEWSLETTER
-========================= --}}
 
-<section class="contact"
-         id="contact-section">
+{{-- =====================================================
+NEWSLETTER
+===================================================== --}}
+
+<section class="newsletter-section" id="newsletter-section">
 
 ```
-<div class="section-heading">
+<div class="newsletter-container">
 
-    <p class="section-label">
-        STAY CONNECTED
-    </p>
+    <div class="section-heading">
 
-    <h2>
-        Newsletter
-    </h2>
+        <p class="section-label">
+            NEWSLETTER
+        </p>
 
-    <p>
-        Sign up for exclusive updates, first access
-        to tickets, and more from Jonny Boss.
-    </p>
+        <h2>
+            Stay Updated
+        </h2>
+
+        <p>
+            Subscribe to receive new music, videos and updates
+            from Jonny Boss.
+        </p>
+
+    </div>
+
+
+    @if(session('success'))
+
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+
+    @endif
+
+
+    @if(session('error'))
+
+        <div class="alert alert-error">
+            {{ session('error') }}
+        </div>
+
+    @endif
+
+
+    @if($errors->any())
+
+        <div class="alert alert-error">
+
+            @foreach($errors->all() as $error)
+
+                <p>
+                    {{ $error }}
+                </p>
+
+            @endforeach
+
+        </div>
+
+    @endif
+
+
+    <form
+        action="{{ url('/subscribe') }}"
+        method="POST"
+        class="newsletter-form"
+    >
+
+        @csrf
+
+        <div class="form-group">
+
+            <label for="newsletter-name">
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="newsletter-name"
+                name="name"
+                value="{{ old('name') }}"
+                placeholder="Your name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="newsletter-email">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                value="{{ old('email') }}"
+                placeholder="Your email address"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            Subscribe
+        </button>
+
+    </form>
 
 </div>
-
-
-<form action="{{ route('subscribe') }}"
-      method="POST"
-      class="newsletter-form">
-
-    @csrf
-
-    <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        value="{{ old('name') }}"
-        required
-    >
-
-    <input
-        type="email"
-        name="email"
-        placeholder="Your Email"
-        value="{{ old('email') }}"
-        required
-    >
-
-    <button type="submit">
-        Subscribe
-    </button>
-
-</form>
 ```
 
 </section>
 
 @endsection
+
