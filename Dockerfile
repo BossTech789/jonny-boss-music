@@ -60,10 +60,12 @@ RUN mkdir -p \
 RUN chmod -R 775 storage bootstrap/cache
 
 # Create storage symlink
+# Create storage symlink
 RUN php artisan storage:link || true
 
 EXPOSE 10000
 
-CMD php artisan serve \
+CMD php artisan migrate --force && \
+    php artisan serve \
     --host=0.0.0.0 \
     --port=${PORT:-10000}
