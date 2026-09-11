@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     curl \
+    xz-utils \
     libzip-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
@@ -22,9 +23,11 @@ RUN apt-get update && apt-get install -y \
         pcntl \
         zip \
         gd \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 20 directly
+RUN curl -fsSL https://nodejs.org/dist/v20.19.5/node-v20.19.5-linux-x64.tar.xz \
+    | tar -xJ -C /usr/local --strip-components=1
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -45,7 +48,7 @@ RUN composer install \
 # Install Node dependencies and build Vite assets
 RUN npm ci && npm run build
 
-# Create Laravel storage/cache directories
+# Create Laravel directories
 RUN mkdir -p \
     storage/framework/cache \
     storage/framework/sessions \
@@ -58,7 +61,6 @@ RUN chmod -R 775 storage bootstrap/cache
 # Create storage symlink
 RUN php artisan storage:link || true
 
-# Render uses the PORT environment variable
 EXPOSE 10000
 
 CMD php artisan serve \
